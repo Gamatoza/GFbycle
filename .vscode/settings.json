@@ -1,0 +1,15 @@
+{
+    "sqltools.connections": [
+        {
+            "database": "TestDB",
+            "dialect": "MySQL",
+            "isActive": true,
+            "isConnected": true,
+            "name": "phpMyAdmin",
+            "password": "qwerty",
+            "port": 3306,
+            "server": "localhost",
+            "username": "root"
+        }
+    ]
+}
