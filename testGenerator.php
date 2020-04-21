@@ -1,8 +1,10 @@
 <?php
+session_start();
 require 'Source/Connection.php';
 require 'Source/Form.php';
 require 'Source/Questions.php';
 require 'Source/Test.php';
+
 /*$Name = $_POST['Name'];
 $FormsID = "(".$_POST['Test'].")";*/
 
@@ -32,18 +34,27 @@ for ($i = 0; $i < $rows; $i++) {
     $Form = new Form($row[0], $row[1], $testType[0]);
 
     //Get Questions
-    $ExpSTR = '(' . $row[3] . ')';
-    $innerQuery = mysqli_query($connect, "SELECT * FROM Questions WHERE ID IN $ExpSTR");
+    if($row[3] != null){
+        $ExpSTR = '(' . $row[3] . ')';
+        $innerQuery = mysqli_query($connect, "SELECT * FROM Questions WHERE ID IN $ExpSTR");
 
-    while ($innerRow = mysqli_fetch_assoc($innerQuery)) {
-        $Form->Questions[] = new Questions($innerRow["ID"], $innerRow["Name"], $innerRow["EntityTo"]);
+        while ($innerRow = mysqli_fetch_assoc($innerQuery)) {
+            $Form->Questions[] = new Questions($innerRow["ID"], $innerRow["Name"], $innerRow["EntityTo"]);
+        }
     }
-
     //Set Answer
     $Form->setCorrectAnswer($row[4]);
 
     //Add To Test
     $Test->Forms[] = $Form;
+}
+
+$_SESSION['CorrectAnswers'] = $Test->getCorrectAnswersToArray();
+$_SESSION['NumberAnswers'] = $rows;
+
+if ($mysqli->connect_error) {
+    die('Connect Error (' . $mysqli->connect_errno . ') '
+            . $mysqli->connect_error);
 }
 
 mysqli_close($connect);

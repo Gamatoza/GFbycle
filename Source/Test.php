@@ -27,6 +27,16 @@ class Test{
     {
         return $this->ID;
     }
+
+    ///
+
+    public function getCorrectAnswersToArray(){
+        $arr = array();
+        foreach($this->Forms as $cor){
+            $arr[] = $cor->getCorrectAnswer();
+        }
+        return $arr;
+    }
 }
 
 
