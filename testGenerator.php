@@ -3,6 +3,7 @@ session_start();
 ini_set('display_errors',1);
 error_reporting(E_ALL);
 
+// кроме коннект подключаем так же классы с которыми мы работаем
 require 'Source/Connection.php';
 require 'Source/Form.php';
 require 'Source/Questions.php';
@@ -52,9 +53,11 @@ for ($i = 0; $i < $rows; $i++) {
     $Test->Forms[] = $Form;
     
 }
+//передаем по сессии массив ответов и их количество
+//p.s. можно было бы сделать их связку, но тем не менее
 $_SESSION['CorrectAnswers'] = $Test->getCorrectAnswersToArray();
 $_SESSION['NumberAnswers'] = $rows;
-
+//обработка ошибок по запросу
 if ($connect->connect_error) {
     trigger_error('Connect Error (' . $connect->connect_errno . ') '
             . $connect->connect_error);
@@ -76,6 +79,7 @@ mysqli_close($connect);
 </head>
 
 <style>
+/*Быстренько накидал, что бы не тупо текст был*/ 
     div {
         width: 700px;
         height: auto;
@@ -98,6 +102,7 @@ mysqli_close($connect);
         <?php
         $i = 0;
         foreach ($Test->Forms as $fm) {
+            //юз как раз отрисовки формы, id форм задается через итератор
             $fm->drawForm($i);
             $i++;
         }

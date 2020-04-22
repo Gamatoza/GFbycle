@@ -1,5 +1,10 @@
 <?php
 
+/*
+Класс: Questions
+Иерархия: Низший
+Назначение: класс вопроса в который помещаются полные данные с таблицы Qeustions с БД
+*/
 class Questions
 {
     private $ID,$Name,$EntityTo;

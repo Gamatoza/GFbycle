@@ -1,6 +1,12 @@
 <?php
 
-
+/*
+Класс: Test
+Иерархия: Высший
+Назначение: Класс предоставляет из себя сборку из форм.
+Кроме как это более не имеет функций.
+Предоставляет функцию отрисовки формы в формате html
+*/
 class Test{
     private $Name,$ID;
     public $Forms = array();
@@ -28,8 +34,9 @@ class Test{
         return $this->ID;
     }
 
-    ///
-
+    
+    //возвращает массив правильных ответов
+    //
     public function getCorrectAnswersToArray(){
         $arr = array();
         foreach($this->Forms as $cor){
@@ -37,6 +44,7 @@ class Test{
         }
         return $arr;
     }
+
 }
 
 

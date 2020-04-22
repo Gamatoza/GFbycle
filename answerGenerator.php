@@ -10,8 +10,15 @@ $Num = $_SESSION['NumberAnswers'];
 
 ?>
 
+<script>
+let same = '<?php echo json_encode($CorrectAnswers);?>'; //передача массива из php в js
+
+alert(same);
+</script>
+
 <!DOCTYPE html>
 <html lang="en">
+<script type="text/javascript"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
