@@ -1,5 +1,8 @@
 <?php
 session_start();
+ini_set('display_errors',1);
+error_reporting(E_ALL);
+
 require 'Source/Connection.php';
 require 'Source/Form.php';
 require 'Source/Questions.php';
@@ -47,14 +50,14 @@ for ($i = 0; $i < $rows; $i++) {
 
     //Add To Test
     $Test->Forms[] = $Form;
+    
 }
-
 $_SESSION['CorrectAnswers'] = $Test->getCorrectAnswersToArray();
 $_SESSION['NumberAnswers'] = $rows;
 
-if ($mysqli->connect_error) {
-    die('Connect Error (' . $mysqli->connect_errno . ') '
-            . $mysqli->connect_error);
+if ($connect->connect_error) {
+    trigger_error('Connect Error (' . $connect->connect_errno . ') '
+            . $connect->connect_error);
 }
 
 mysqli_close($connect);
@@ -105,3 +108,5 @@ mysqli_close($connect);
 </body>
 
 </html>
+
+
