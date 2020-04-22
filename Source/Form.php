@@ -75,21 +75,21 @@ class Form
 
         switch ($this->Type) {
             case 1:
-                $i = 0;
+                $i = 1;
                 foreach ($this->Questions as $qo) {
-                    echo '<input type="checkbox" name="answerTo'.$ID.'[]" value="'.$i.'">' . $qo->getName() . '<Br>';
+                    echo '<input type="checkbox" name="C'.$ID.'[]" value="'.$i.'">' . $qo->getName() . '<Br>';
                     $i+=1;
                 }
                 break;
             case 2:
-                $i = 0;
+                $i = 1;
                 foreach ($this->Questions as $qo) {
-                    echo '<input type="radio" name="answerTo'.$ID.'" value="'.$i.'">' . $qo->getName() . '<Br>';
+                    echo '<input type="radio" name="R'.$ID.'" value="'.$i.'">' . $qo->getName() . '<Br>';
                     $i+=1;
                 }
                 break;
             case 3:
-                echo '<textarea type="text" name="answerTo'.$ID.'"></textarea> <Br>';
+                echo '<textarea type="text" name="A'.$ID.'"></textarea> <Br>';
                 break;
             default:
                 # code...
