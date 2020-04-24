@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <title>Document</title>
+</head>
+
+<style>
+    .getBorder {
+        width: 30%;
+        height: auto;
+        /* Размеры */
+        outline: 2px solid #000;
+        /* Чёрная рамка */
+        border: 3px solid #fff;
+        /* Белая рамка */
+        border-radius: 10px;
+        /* Радиус скругления */
+    }
+    
+    .inLineBlock>* {
+        display: inline;
+        margin-left: 20px;
+    }
+</style>
+
+<body style="margin:20px;">
+
+    <div style="margin:20px 0px" class="getBorder">
+        <div>
+            <label style="display:inline; margin:0px 20px 20px 0px">Название теста</label>
+            <input type="text" name="Name" id="0" value="" />
+        </div>
+        <Br>
+        <div>
+            <label>Тип вопроса</label>
+            <form name="sameName">
+                <p><input type="radio" name="R" id="0" value="0" checked>Radio</p>
+                <p><input type="radio" name="C" id="1" value="1">Checkbox</p>
+                <p><input type="radio" name="A" id="2" value="2">Answer</p>
+            </form><br>
+            <input type="button" id="AddForm" value="Добавить вопрос" />
+        </div>
+    </div>
+    <script>
+        let index = 1;
+
+        $("#AddForm").click(() => {
+            $("#test").append(` <label>Вопрос номер ${index+1}</label><div name="form${index}" class="getBorder" id="form${index}"></div>`);
+            $(`#form${index}`).html(`${index}`);
+            index++;
+        })
+    </script>
+    <label>Тест</label>
+    <form id="test" method="post" action="sendNewTest.php">
+        <label>Вопрос номер 1</label>
+        <div name="form" class="getBorder" id="0">
+            <label>Текст вопроса</label><br>
+            <textarea name="QuestionName"></textarea>
+            <div id="Questions">
+
+            </div>
+        </div>
+    </form>
+
+    <footer class="footer">
+        <input type="submit" value="End" />
+    </footer>
+
+</body>
+
+</html>
